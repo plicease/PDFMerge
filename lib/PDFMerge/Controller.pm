@@ -5,6 +5,9 @@ use warnings;
 use v5.10;
 use Mojo::Base 'Mojolicious::Controller';
 
+# ABSTRACT: controller for PDFMerge
+# VERSION
+
 use File::HomeDir;
 use PDF::API2;
 use Path::Class::Dir ();

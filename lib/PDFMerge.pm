@@ -5,6 +5,7 @@ use warnings;
 use v5.10;
 use Mojo::Base qw( Mojolicious );
 
+# ABSTRACT: Web interface for merging PDF documents.
 # VERSION
 
 sub startup
