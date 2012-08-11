@@ -1,0 +1,25 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN">
+<html>
+  <head>
+    <title>[% title %]</title>
+  </head>
+
+  <body>
+    <h1>[% title %]</h1>
+
+    [% IF h.flash('error') %]
+      <p>!! <span id="pdf_merge_error">[% h.flash('error') %]</span> !!</p>
+    [% END %]
+
+    [% IF h.flash('message') %]
+      <p>!! <span id="pdf_merge_message">[% h.flash('message') %]</span> !!</p>
+    [% END %]
+
+    [% content %]
+
+    <div id="footer">
+      &copy; 2012
+    </div>
+
+  </body>
+</html>

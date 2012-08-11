@@ -1,0 +1,33 @@
+[%
+  WRAPPER layouts/default.html.tt
+  title = 'PDF'
+%]
+<form method="post" action="[% h.url_for('pdf_merge_form') %]">
+  <input type="submit" value="merge" />
+  [% FOREACH pdf IN pdfs %]
+    <input type="hidden" name="pdf_[% pdf.id %]_name" value="[% pdf.name %]" />
+  [% END %]
+
+  <table border="1">
+
+    <tr>
+      <th>include</th>
+      <th>name</th>
+      <th>pages</th>
+    </tr>
+
+    [% FOREACH pdf IN pdfs %]
+
+      <tr>
+        <td><input type="checkbox" checked=checked name="pdf_[% pdf.id %]" id="pdf_checkbox_[% pdf.id %]" /></td>
+        <td><a href="[% h.url_for('pdf_download', filename => pdf.name ) %]">[% pdf.name | html %]</a></td>
+        <td>[% pdf.page_count %]</td>
+      </tr>
+
+    [% END %]
+
+  </table>
+
+</form>
+
+[% END %]
