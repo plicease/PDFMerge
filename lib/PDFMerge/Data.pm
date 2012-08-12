@@ -66,4 +66,15 @@ sub links
   [ { href => 'https://github.com/plicease/PDFMerge', text => '@github' } ];
 }
 
+sub version
+{
+  $PDFMerge::VERSION // 'dev';
+}
+
+sub footer
+{
+  my($self) = @_;
+  'PDFMerge version ' . $self->version . ' copyright &copy; 2012 Graham Ollis';
+}
+
 1;

@@ -3,10 +3,9 @@
   project     = 'PDFMerge'
   description = 'Web interface for merging PDF documents'
   author      = 'Graham Ollis'
-  favicon     = '/favicon.ico'
-  copyyear    = '2012'
   title       = h.pdf.pdf_directory
   links       = h.pdf.links
+  footer      = h.pdf.footer
 %]
 
 <br/>
