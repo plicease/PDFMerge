@@ -58,6 +58,7 @@ By default, pdf-merge only listens to port 3001 (not to conflict
 with other Mojolicious applications) and binds only to 127.0.0.1.
 If you want to bind to something else start the application with
 the normal Mojolicous start up
+
  % pdf-merge daemon -l http://\*:3002
  [Wed Aug  8 22:22:23 2012] [info] Listening at "http://*:3002".
  Server available at http://127.0.0.1:3002.

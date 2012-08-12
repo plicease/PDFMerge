@@ -1,5 +1,8 @@
 package PDFMerge::Data;
 
+# ABSTRACT: model for PDFMerge
+# VERSION
+
 use Mojo::Base -base;
 use PDF::API2;
 use POSIX qw( strftime );
