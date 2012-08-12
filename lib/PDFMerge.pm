@@ -1,9 +1,7 @@
 package PDFMerge;
 
-use strict;
-use warnings;
-use v5.10;
 use Mojo::Base qw( Mojolicious );
+use PDFMerge::Data;
 
 # ABSTRACT: Web interface for merging PDF documents.
 # VERSION
@@ -28,6 +26,11 @@ sub startup
   $r->post('/pdf/merge')->name('pdf_merge_form')->to('controller#pdf_merge_form');
 
   $r->get('/pdf/merge/*pdf_list')->name('pdf_merge')->to('controller#pdf_merge');
+
+  $self->helper(pdf => sub {
+    state $data;
+    $data //= PDFMerge::Data->new;
+  });
 
   return;
 }

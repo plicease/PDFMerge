@@ -2,10 +2,11 @@
   WRAPPER layouts/bootstrap.html.tt
   project     = 'PDFMerge'
   description = 'Web interface for merging PDF documents'
-  project     = 'PDFMerge'
   author      = 'Graham Ollis'
   favicon     = '/favicon.ico'
   copyyear    = '2012'
+  title       = h.pdf.pdf_directory
+  links       = h.pdf.links
 %]
 
 <br/>

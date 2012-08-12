@@ -8,6 +8,7 @@ use FindBin ();
 use File::Copy qw( copy );
 use File::Spec;
 use PDFMerge;
+use PDF::API2;
 
 mkdir( File::Spec->catdir(File::HomeDir->my_home, 'PDF') );
 copy(
@@ -38,7 +39,7 @@ $t->get_ok('/pdf/test.pdf')
   ->status_is(200)
   ->content_type_is('application/x-download;name=test.pdf');
 
-is PDF::API2->openScalar( $t->tx->res->body )->pages, 1, "test.pdf pages = 1";
+is(PDF::API2->openScalar( $t->tx->res->body )->pages, 1, "test.pdf pages = 1");
 
 $t->post_ok('/pdf/merge')
   ->status_is(302)
@@ -62,7 +63,7 @@ $t->get_ok('/pdf/test2.pdf')
   ->status_is(200)
   ->content_type_is('application/x-download;name=test2.pdf');
 
-is PDF::API2->openScalar( $t->tx->res->body )->pages, 4, "test2.pdf pages = 4";
+is(PDF::API2->openScalar( $t->tx->res->body )->pages, 4, "test2.pdf pages = 4");
 
 $t->post_form_ok('/pdf/merge', { pdf_0 => 1, pdf_0_name => 'test', pdf_1 => 1, pdf_1_name => 'test2' } )
   ->status_is(302)
@@ -72,4 +73,4 @@ $t->get_ok('/pdf/merge/test/test2')
   ->status_is(200)
   ->content_type_like(qr{application/x-download;name=pdf_merge_\d{12}_....\.pdf});
 
-is PDF::API2->openScalar( $t->tx->res->body )->pages, 5, "test/test2 pages = 5";
+is(PDF::API2->openScalar( $t->tx->res->body )->pages, 5, "test/test2 pages = 5");
