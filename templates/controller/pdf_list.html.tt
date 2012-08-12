@@ -1,30 +1,44 @@
 [%
-  WRAPPER layouts/default.html.tt
-  title = 'PDF'
+  WRAPPER layouts/bootstrap.html.tt
+  project     = 'PDFMerge'
+  description = 'Web interface for merging PDF documents'
+  project     = 'PDFMerge'
+  author      = 'Graham Ollis'
+  favicon     = '/favicon.ico'
+  copyyear    = '2012'
 %]
+
+<br/>
+
 <form method="post" action="[% h.url_for('pdf_merge_form') %]">
-  <input type="submit" value="merge" />
+  <input type="submit" value="merge" class="btn" />
   [% FOREACH pdf IN pdfs %]
     <input type="hidden" name="pdf_[% pdf.id %]_name" value="[% pdf.name %]" />
   [% END %]
 
-  <table border="1">
+  <table class="table">
 
-    <tr>
-      <th>include</th>
-      <th>name</th>
-      <th>pages</th>
-    </tr>
-
-    [% FOREACH pdf IN pdfs %]
-
+    <thead>
       <tr>
-        <td><input type="checkbox" checked=checked name="pdf_[% pdf.id %]" id="pdf_checkbox_[% pdf.id %]" /></td>
-        <td><a href="[% h.url_for('pdf_download', filename => pdf.name ) %]">[% pdf.name | html %]</a></td>
-        <td>[% pdf.page_count %]</td>
+        <th>include</th>
+        <th>name</th>
+        <th>pages</th>
       </tr>
+    </thead>
 
-    [% END %]
+    <tbody>
+
+      [% FOREACH pdf IN pdfs %]
+
+        <tr>
+          <td><input type="checkbox" checked=checked name="pdf_[% pdf.id %]" id="pdf_checkbox_[% pdf.id %]" /></td>
+          <td><a href="[% h.url_for('pdf_download', filename => pdf.name ) %]">[% pdf.name | html %]</a></td>
+          <td>[% pdf.page_count %]</td>
+        </tr>
+
+      [% END %]
+
+    </tbody>
 
   </table>
 

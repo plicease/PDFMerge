@@ -25,7 +25,7 @@ $t->get_ok('/')
 $t->get_ok('/pdf')
   ->status_is(200);
 
-is $t->tx->res->dom->at('html head title')->text, 'PDF', 'title = PDF';
+like $t->tx->res->dom->at('html head title')->text, qr{^PDFMerge : .*/PDF$}, 'title = ' . $t->tx->res->dom->at('html head title');
 is $t->tx->res->dom->at('html body form')->attrs('method'), 'post', 'method = post';
 is $t->tx->res->dom->at('html body form')->attrs('action'), '/pdf/merge', 'action = /pdf/merge';
 is $t->tx->res->dom->at('td a')->attrs('href'), '/pdf/test.pdf', 'href = /pdf/test.pdf';

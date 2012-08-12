@@ -31,7 +31,11 @@ sub pdf_list
              grep { (not $_->is_dir) and ($_->basename =~ /\.pdf$/) }
              $self->pdf_directory->children( no_hidden => 1 );
 
-  $self->render( pdfs => \@pdfs );
+  $self->render(
+    links => [ { href => 'https://github.com/plicease/PDFMerge', text => '@github' } ],
+    pdfs  => \@pdfs,
+    title => $self->pdf_directory,
+  );
 }
 
 sub pdf_download
