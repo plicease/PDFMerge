@@ -24,9 +24,6 @@ Mojolicious::Commands->start_app('PDFMerge');
 
 then point your browser to
 
-
-then point your browser to
-
 =over 4
 
 =item * http://localhost:3001
