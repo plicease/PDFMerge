@@ -37,7 +37,7 @@ $t->get_ok('/pdf/bogus.pdf')
 
 $t->get_ok('/pdf/test.pdf')
   ->status_is(200)
-  ->content_type_is('application/x-download;name=test.pdf');
+  ->content_type_like(qr{application/x-download;name="?test\.pdf"?});
 
 is(PDF::API2->openScalar( $t->tx->res->body )->pages, 1, "test.pdf pages = 1");
 
@@ -61,7 +61,7 @@ copy(
 
 $t->get_ok('/pdf/test2.pdf')
   ->status_is(200)
-  ->content_type_is('application/x-download;name=test2.pdf');
+  ->content_type_like(qr{application/x-download;name="?test2\.pdf"?});
 
 is(PDF::API2->openScalar( $t->tx->res->body )->pages, 4, "test2.pdf pages = 4");
 
@@ -71,6 +71,6 @@ $t->post_form_ok('/pdf/merge', { pdf_0 => 1, pdf_0_name => 'test', pdf_1 => 1, p
 
 $t->get_ok('/pdf/merge/test/test2')
   ->status_is(200)
-  ->content_type_like(qr{application/x-download;name=pdf_merge_\d{12}_....\.pdf});
+  ->content_type_like(qr{application/x-download;name="?pdf_merge_\d{12}_....\.pdf"?});
 
 is(PDF::API2->openScalar( $t->tx->res->body )->pages, 5, "test/test2 pages = 5");
