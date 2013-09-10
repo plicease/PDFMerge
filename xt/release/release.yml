@@ -16,5 +16,6 @@ pod_coverage:
   # for either Class or method.
   private:
     - PDFMerge#startup
+    - PDFMerge#share_dir
     - PDFMerge::Data#.*
     - PDFMerge::Controller#.*
