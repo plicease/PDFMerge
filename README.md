@@ -1,24 +1,16 @@
-=head1 NAME
+# pdf-merge
 
-pdf-merge - Web interface for merging PDF documents.
+Web interface for merging PDF documents.
 
-=head1 VERSION
+# SYNOPSIS
 
-version 0.1
-
-=head1 SYNOPSIS
-
- % pdf-merge
+    % pdf-merge
 
 then point your browser to
 
-=over 4
+- http://localhost:3001
 
-=item * http://localhost:3001
-
-=back
-
-=head1 DESCRIPTION
+# DESCRIPTION
 
 This application provides a web interface for merging multiple
 PDF documents so they can be sent to a printer for physical
@@ -29,37 +21,36 @@ junk which is apparently more important), so when I need to print
 something I use a virtual PDF printer (cups-pdf in Debian, other
 distributions and operating systems probably have similar packages)
 and take the PDFs to FedEx Office.  Unfortunately the self service
-facility for printing multiuple PDFs has a sucky interface so it
+facility for printing multiple PDFs has a sucky interface so it
 is better to go there with one big PDF rather than many little
 PDFs.  The intent is to use the virtual PDF printer to print to
 ~/PDF, and then merge them with this web application into a single
 PDF which I save to the memory stick which I take to the FedEx
 Office.
 
-The application is implemeted with  Mojolicious, plus a few other
+The application is implemented with  Mojolicious, plus a few other
 modules available on CPAN.
 
 By default, pdf-merge only listens to port 3001 (not to conflict
 with other Mojolicious applications) and binds only to 127.0.0.1.
 If you want to bind to something else start the application with
-the normal Mojolicous start up
+the normal Mojolicious start up
 
- % pdf-merge daemon -l http://\*:3002
- [Wed Aug  8 22:22:23 2012] [info] Listening at "http://*:3002".
- Server available at http://127.0.0.1:3002.
+    % pdf-merge daemon -l http://\*:3002
+    [Wed Aug  8 22:22:23 2012] [info] Listening at "http://*:3002".
+    Server available at http://127.0.0.1:3002.
 
-=head1 SEE ALSO
+# SEE ALSO
 
-L<PDFMerge>, L<Mojolicious>
+[PDFMerge](http://search.cpan.org/perldoc?PDFMerge), [Mojolicious](http://search.cpan.org/perldoc?Mojolicious)
 
-=head1 AUTHOR
+# AUTHOR
 
 Graham Ollis <plicease@cpan.org>
 
-=head1 COPYRIGHT AND LICENSE
+# COPYRIGHT AND LICENSE
 
 This software is copyright (c) 2012 by Graham Ollis.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
-
