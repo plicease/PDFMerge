@@ -8,10 +8,10 @@ use File::Spec::Functions qw(catdir splitdir);
 # ABSTRACT: Web interface for merging PDF documents.
 # VERSION
 
-# Source directory has precedence
-my @base = (splitdir(dirname(__FILE__)), '..');
-my $lib = join('/', @base, 'lib');
--e catdir(@base, 't') ? unshift(@INC, $lib) : push(@INC, $lib);
+## Source directory has precedence
+#my @base = (splitdir(dirname(__FILE__)), '..');
+#my $lib = join('/', @base, 'lib');
+#-e catdir(@base, 't') ? unshift(@INC, $lib) : push(@INC, $lib);
 
 @ARGV = ('daemon', -l => 'http://127.0.0.1:3001') if @ARGV == 0 && !$ENV{TEST_PDF_MERGE};
 # Start commands for application

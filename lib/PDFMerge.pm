@@ -1,6 +1,9 @@
 package PDFMerge;
 
+use v5.10;
 use Mojo::Base qw( Mojolicious );
+use File::ShareDir qw( dist_dir );
+use File::Basename qw( dirname );
 use PDFMerge::Data;
 
 # ABSTRACT: Web interface for merging PDF documents.
@@ -9,6 +12,9 @@ use PDFMerge::Data;
 sub startup
 {
   my($self) = @_;
+
+  @{ $self->renderer->paths } = ( $self->share_dir . '/templates');
+  @{ $self->static->paths } = ( $self->share_dir . '/public' );
 
   $self->plugin('TtRenderer');
   $self->plugin('RenderFile');
@@ -33,6 +39,26 @@ sub startup
   });
 
   return;
+}
+
+sub share_dir
+{
+  state $path;
+  
+  unless(defined $path)
+  {
+    if(defined $PDFMerge::VERSION)
+    {
+      $path = dist_dir('PDFMerge');
+    }
+    else
+    {
+      require File::Spec;
+      $path = File::Spec->rel2abs("../share", dirname(__FILE__));
+    }
+  }
+  
+  $path;
 }
 
 1;
