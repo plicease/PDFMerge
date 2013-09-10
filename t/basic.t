@@ -27,9 +27,9 @@ $t->get_ok('/pdf')
   ->status_is(200);
 
 like $t->tx->res->dom->at('html head title')->text, qr{^PDFMerge : .*/PDF$}, 'title = ' . $t->tx->res->dom->at('html head title');
-is $t->tx->res->dom->at('html body form')->attrs('method'), 'post', 'method = post';
-is $t->tx->res->dom->at('html body form')->attrs('action'), '/pdf/merge', 'action = /pdf/merge';
-is $t->tx->res->dom->at('td a')->attrs('href'), '/pdf/test.pdf', 'href = /pdf/test.pdf';
+is $t->tx->res->dom->at('html body form')->attr('method'), 'post', 'method = post';
+is $t->tx->res->dom->at('html body form')->attr('action'), '/pdf/merge', 'action = /pdf/merge';
+is $t->tx->res->dom->at('td a')->attr('href'), '/pdf/test.pdf', 'href = /pdf/test.pdf';
 is $t->tx->res->dom->at('td a')->text, 'test', 'text = test';
 
 $t->get_ok('/pdf/bogus.pdf')
@@ -50,7 +50,7 @@ $t->get_ok('/pdf')
 
 is $t->tx->res->dom->at('span#pdf_merge_error')->text, 'No PDFs specified for merge', 'error = No PDFs specified for merge';
 
-$t->post_form_ok('/pdf/merge', { pdf_0 => 1, pdf_0_name => 'test' } )
+$t->post_ok('/pdf/merge', form => { pdf_0 => 1, pdf_0_name => 'test' } )
   ->status_is(302)
   ->header_like('Location', qr{http://localhost:\d+/pdf/merge/test}, 'redirect to /pdf/test');
 
@@ -65,7 +65,7 @@ $t->get_ok('/pdf/test2.pdf')
 
 is(PDF::API2->openScalar( $t->tx->res->body )->pages, 4, "test2.pdf pages = 4");
 
-$t->post_form_ok('/pdf/merge', { pdf_0 => 1, pdf_0_name => 'test', pdf_1 => 1, pdf_1_name => 'test2' } )
+$t->post_ok('/pdf/merge', form => { pdf_0 => 1, pdf_0_name => 'test', pdf_1 => 1, pdf_1_name => 'test2' } )
   ->status_is(302)
   ->header_like('Location', qr{http://localhost:\d+/pdf/merge/test/test2}, 'redirect to /pdf/test/test2');
 
