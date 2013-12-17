@@ -42,7 +42,7 @@ the normal Mojolicious start up
 
 # SEE ALSO
 
-[PDFMerge](http://search.cpan.org/perldoc?PDFMerge), [Mojolicious](http://search.cpan.org/perldoc?Mojolicious)
+[PDFMerge](https://metacpan.org/pod/PDFMerge), [Mojolicious](https://metacpan.org/pod/Mojolicious)
 
 # AUTHOR
 
