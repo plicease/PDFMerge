@@ -1,9 +1,8 @@
 EV
-ExtUtils::MakeMaker
 File::HomeDir
 File::HomeDir::Test
 File::ShareDir
-File::ShareDir::Install
+Module::Build
 Mojolicious
 Mojolicious::Plugin::RenderFile
 Mojolicious::Plugin::TtRenderer
